@@ -1,7 +1,7 @@
-
+import ProductCardListComponent from "@/components/products/ProductCardListComponent";
 
 export default function ProductPage(){
   return (
-    <h1>Product Page</h1>
+    <ProductCardListComponent/>
   )
 }

@@ -1,4 +1,3 @@
-
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -13,7 +12,6 @@ import Image from "next/image";
 import { MenuList } from "@/lib/menu-list";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
-
 
 export default function WindowNavbarComponent() {
    const pathName = usePathname();
