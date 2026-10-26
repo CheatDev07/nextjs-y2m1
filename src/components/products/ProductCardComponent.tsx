@@ -13,6 +13,9 @@ import Image from "next/image";
 import { ProductResponseType } from "@/lib/products/product-type";
 
 const ProductCardComponent = ({images, title,description, price }:ProductResponseType) => {
+  
+  const PLACEHOLDER = '/assets/placeholder.png'
+  const imageSrc = images && images.length > 0 && images[0] ? images[0] : PLACEHOLDER; 
 
   return (
     <a
@@ -25,7 +28,7 @@ const ProductCardComponent = ({images, title,description, price }:ProductRespons
         <CardHeader className="relative block p-0">
           <AspectRatio ratio={1.268115942} className="overflow-hidden">
             <Image
-              src={images[0]}
+              src={imageSrc}
               alt={title}
               width={500}
               height={500}
