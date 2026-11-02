@@ -1,16 +1,17 @@
 "use client";
 
-import type { ReactNode } from "react";
-import { createContext, useContext } from "react";
+import { createContext, ReactNode, useContext } from "react";
 import { cn } from "cn";
 
 const PriceContext = createContext<{ onSale?: boolean }>({ onSale: false });
 export const usePriceContext = () => useContext(PriceContext);
 
+
 interface PriceProps {
-  className?: string;
-  children: ReactNode;
-  onSale?: boolean;
+  regular: number;
+  sale?: number;
+  currency: string;
+  text?: string;
 }
 
 interface PriceValueProps {
@@ -39,15 +40,38 @@ function formatCurrency(value: number, currency = "USD", locale = "en-US") {
   return formatterCache.get(key)!.format(value);
 }
 
-const Price = ({ className, children, onSale }: PriceProps) => {
+const Price = ({ regular, sale, currency }: PriceProps) => {
+  if (!regular || !currency) return;
+
+  const formatCurrency = (
+    value: number,
+    currency: string = "USD",
+    locale: string = "en-US",
+  ) => {
+    return new Intl.NumberFormat(locale, {
+      style: "currency",
+      currency,
+    }).format(value);
+  };
+
   return (
-    <PriceContext.Provider value={{ onSale }}>
-      <div className={cn("flex flex-wrap items-center gap-x-2", className)}>
-        {children}
-      </div>
-    </PriceContext.Provider>
+    <div className="flex items-center gap-2">
+      {sale && (
+        <span className="text-right text-2xl font-bold text-primary">
+          {formatCurrency(sale, currency)}
+        </span>
+      )}
+      <span
+        className={`text-right text-2xl font-bold ${
+          sale ? "text-muted-foreground line-through" : "text-foreground"
+        }`}
+      >
+        {formatCurrency(regular, currency)}
+      </span>
+    </div>
   );
 };
+
 
 const PriceValue = ({
   price,

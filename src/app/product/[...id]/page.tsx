@@ -1,4 +1,5 @@
-import { ProductDetailComponent } from "@/components/products/ProductDetailComponent";
+import { ProductDetailComponent } from "@/components/products/detail/ProductDetailComponent";
+import { Suspense } from "react";
 
 export default async function ProductDetailPage(
 {
@@ -8,7 +9,19 @@ export default async function ProductDetailPage(
 }){
   const {id} = await params;
 
+  const getSingleProduct = fetch(`${process.env.DUMMY_API_URL}/products/${id}`)
+  .then(data => data.json())
+  .then(product => 
+  {
+    console.log(`Single data: `, product)
+    return product;
+  }
+  )
+  .catch(error => error)
+
   return (
-    <ProductDetailComponent/>
+    <Suspense fallback={<h1>Loading...</h1>}>
+      <ProductDetailComponent product={getSingleProduct}/>
+    </Suspense>
   )
 }

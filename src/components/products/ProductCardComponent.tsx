@@ -1,6 +1,6 @@
 import { cn } from "cn";
 
-import { Price, PriceValue } from "@/components/products/price";
+
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import {
   Card,
@@ -11,6 +11,8 @@ import {
 } from "@/components/ui/card";
 import Image from "next/image";
 import { ProductResponseType } from "@/lib/products/product-type";
+import { Price, PriceValue } from "./price";
+
 
 const ProductCardComponent = ({images, title,description, price }:ProductResponseType) => {
   
@@ -43,14 +45,14 @@ const ProductCardComponent = ({images, title,description, price }:ProductRespons
           <CardDescription className="font-medium text-muted-foreground">
             {description}
           </CardDescription>
-          <div className="mt-auto">
-            <Price onSale={price != null} className="text-lg font-semibold">
+          <div className="mt-auto flex gap-4">
               <PriceValue
                 price={price}
                 variant="regular"
+                className="text-red-500 font-bold ml-2"
               />
               <PriceValue price={price} variant="sale" />
-            </Price>
+            
           </div>
         </CardContent>
       </Card>
