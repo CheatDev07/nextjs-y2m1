@@ -1,17 +1,12 @@
 "use client";
 
-import { cn } from "cn";
-
 import MobileNavbarComponent from "./MobileNavbarComponent";
 import WindowNavbarComponent from "./WindowNavbarComponent";
 
-interface NavbarProps {
-  className?: string;
-}
 
-const NavbarComponent = ({ className }: NavbarProps) => {
+const NavbarComponent = () => {
   return (
-    <section className={cn("py-4", className)}>
+    <section >
       <div className="container">
         <nav className="flex items-center justify-between">
           {/* Window */}

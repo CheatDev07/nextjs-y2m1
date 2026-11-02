@@ -6,35 +6,35 @@ import { cn } from "cn";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
-import { PRODUCT_DETAILS} from "./product-detail";
+import { PRODUCT_DETAILS } from "./product-detail";
 import { ProductImages } from "./ProductImages";
 import { Reviews } from "./Review";
 import { ProductForm } from "./ProductForm";
 import { ProductInfo } from "./ProductInfo";
 import { use } from "react";
-import { Price } from "./Price";
+import { PriceValue } from "../price";
 
 
 interface ProductDetailResponse {
-   title: string;
-   description: string;
-   category:string;
-   price:string;
-   discountPercentage:number;
-   rating: number;
-   images: [];
-   reviews: []
+  title: string;
+  description: string;
+  category: string;
+  price: number;
+  discountPercentage: number;
+  rating: number;
+  images: string[];
+  reviews: []
 }
 
 const ProductDetailComponent = ({
-    product
-}:{
+  product
+}: {
   product: Promise<ProductDetailResponse>
 }) => {
-  
+
   const singleProduct = use(product);
 
-  const {title, description,price, discountPercentage,rating, images, reviews} = singleProduct;
+  const { title, description, price, rating, images, reviews } = singleProduct;
 
   return (
     <section className={cn("py-32")}>
@@ -61,7 +61,12 @@ const ProductDetailComponent = ({
                     </Badge>
                   </div>
                 </div>
-                <Price regular={0} currency={""}/>
+                <PriceValue
+                  price={price}
+                  variant="regular"
+                  className="text-red-500 font-bold ml-2"
+                />
+                <PriceValue price={price} variant="sale" />
               </div>
 
               <p className="text-muted-foreground">
@@ -81,7 +86,6 @@ const ProductDetailComponent = ({
                 quantity: 1,
               }}
             />
-
             <ProductInfo
               info={[
                 {

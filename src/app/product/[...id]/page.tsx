@@ -7,6 +7,7 @@ export default async function ProductDetailPage(
 }:{
   params: Promise<{id: number}>
 }){
+  
   const {id} = await params;
 
   const getSingleProduct = fetch(`${process.env.DUMMY_API_URL}/products/${id}`)

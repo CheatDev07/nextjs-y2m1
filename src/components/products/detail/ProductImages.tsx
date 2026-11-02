@@ -23,11 +23,10 @@ export const ProductImages = ({ images }: ProductImagesProps) => {
           >
             <AspectRatio ratio={1} className="overflow-hidden rounded-lg">
               <Image
-                src={img.src}
-                alt={img.alt}
-                width={img.width}
-                height={img.height}
-                sizes={img.sizes}
+                src={img}
+                alt={"product-img"}
+                width={500}
+                height={500}
                 className="block size-full object-cover object-center"
               />
             </AspectRatio>

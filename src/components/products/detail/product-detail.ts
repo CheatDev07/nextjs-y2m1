@@ -27,14 +27,15 @@ export interface Hinges {
 }
 
 export interface ProductImagesProps {
-  images: Array<{
-    srcset: string;
-    src: string;
-    alt: string;
-    width: number;
-    height: number;
-    sizes: string;
-  }>;
+  // images: Array<{
+  //   srcset: string;
+  //   src: string;
+  //   alt: string;
+  //   width: number;
+  //   height: number;
+  //   sizes: string;
+  // }>;
+  images: string[]
 }
 
 export interface ReviewsProps {
