@@ -20,6 +20,12 @@ const nextConfig: NextConfig = {
         hostname: 'cdn.dummyjson.com',
         port: ''
       },
+      {
+        protocol: 'https',
+        hostname: 'cdn.shadcnblocks.com',
+        port: ''
+      },
+
     ],
   }
 };
